@@ -38,7 +38,8 @@ let split = false, mobile = false;
 // One iframe per design: they keep their own scroll position while hidden.
 const frames = designs.map(([src, label]) => {
   const f = document.createElement('iframe');
-  f.dataset.src = src; f.title = label; stage.append(f);
+  f.dataset.src + '?v=' + Date.now();
+  f.title = label; stage.append(f);
   return f;
 });
 
