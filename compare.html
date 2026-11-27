@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design comparison</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 14px system-ui, sans-serif; background: #d9d4cc; }
+  #bar { position: fixed; inset: 0 0 auto 0; height: 52px; display: flex; align-items: center; gap: 8px;
+         padding: 0 12px; background: #1d1813; color: #f3ead8; overflow-x: auto; z-index: 10; }
+  #bar button { border: 1px solid #5a4a38; background: transparent; color: inherit; padding: 8px 14px;
+                border-radius: 999px; font: inherit; cursor: pointer; white-space: nowrap; }
+  #bar button.on { background: #c9a26b; border-color: #c9a26b; color: #1d1813; }
+  #bar .sp { flex: 1; }
+  #stage { position: fixed; inset: 52px 0 0 0; display: flex; justify-content: center; gap: 6px; }
+  iframe { display: block; height: 100%; width: 100%; border: 0; background: #fff; min-width: 0; }
+  iframe[hidden] { display: none; }
+  #stage.mobile iframe { width: 390px; box-shadow: 0 0 0 1px #0003, 0 10px 40px #0004; }
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage"></div>
+
+<script>
+// Put the three files in the same folder as this page and edit the names/labels here.
+const designs = [
+  ['mockup.html',            '1 · Beige'],
+  ['mockup-black-gold.html', '2 · Black & gold'],
+  ['mockup-champagne.html',  '3 · Champagne & espresso'],
+];
+
+const bar = document.getElementById('bar'), stage = document.getElementById('stage');
+let cur = Math.min(Math.max(parseInt(location.hash.slice(1)) - 1 || 0, 0), designs.length - 1);
+let split = false, mobile = false;
+
+// One iframe per design: they keep their own scroll position while hidden.
+const frames = designs.map(([src, label]) => {
+  const f = document.createElement('iframe');
+  f.dataset.src = src; f.title = label; stage.append(f);
+  return f;
+});
+
+const tabs = designs.map(([, label], i) => mkBtn(label, () => { cur = i; split = false; render(); }));
+const sp = Object.assign(document.createElement('span'), { className: 'sp' });
+const splitBtn = mkBtn('Side by side', () => { split = !split; render(); });
+const mobBtn = mkBtn('Mobile width', () => { mobile = !mobile; render(); });
+bar.append(...tabs, sp, splitBtn, mobBtn);
+
+function mkBtn(text, onclick) {
+  const b = document.createElement('button');
+  b.textContent = text; b.onclick = onclick; return b;
+}
+
+function render() {
+  frames.forEach((f, i) => {
+    const show = split || i === cur;
+    f.hidden = !show;
+    if (show && !f.getAttribute('src')) f.src = f.dataset.src; // load lazily on first view
+  });
+  tabs.forEach((b, i) => b.classList.toggle('on', !split && i === cur));
+  splitBtn.classList.toggle('on', split);
+  mobBtn.classList.toggle('on', mobile);
+  stage.classList.toggle('mobile', mobile);
+  history.replaceState(null, '', '#' + (cur + 1));
+}
+
+// Keyboard: 1-3 switch design, S = side by side, M = mobile width
+addEventListener('keydown', e => {
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const n = parseInt(e.key);
+  if (n >= 1 && n <= designs.length) { cur = n - 1; split = false; }
+  else if (e.key === 's') split = !split;
+  else if (e.key === 'm') mobile = !mobile;
+  else return;
+  render();
+});
+
+render();
+</script>
+</body>
+</html>
