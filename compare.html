@@ -38,7 +38,7 @@ let split = false, mobile = false;
 // One iframe per design: they keep their own scroll position while hidden.
 const frames = designs.map(([src, label]) => {
   const f = document.createElement('iframe');
-  f.dataset.src + '?v=' + Date.now();
+   f.dataset.src = src;
   f.title = label; stage.append(f);
   return f;
 });
@@ -58,7 +58,7 @@ function render() {
   frames.forEach((f, i) => {
     const show = split || i === cur;
     f.hidden = !show;
-    if (show && !f.getAttribute('src')) f.src = f.dataset.src; // load lazily on first view
+    if (show && !f.getAttribute('src')) f.src = f.dataset.src + '?v=' + Date.now();
   });
   tabs.forEach((b, i) => b.classList.toggle('on', !split && i === cur));
   splitBtn.classList.toggle('on', split);
