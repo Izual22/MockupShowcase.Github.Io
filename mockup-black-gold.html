@@ -79,8 +79,8 @@ body { font-family: var(--font-sans); background-color: var(--background); color
   <div class="relative mx-auto w-full max-w-6xl px-5">
     <div class="max-w-xl">
       <div class="mb-6 flex h-28 w-28 items-center justify-center rounded-full border-2 text-4xl font-display" style="background:#0b0b0b;border-color:#c08a5b;color:#c08a5b" title="Tu pojawi się logo">PK</div>
-      <h1 class="font-display text-5xl leading-tight md:text-7xl">Atelier Lumière</h1>
-      <p class="mt-5 text-lg text-muted-foreground">Salon urody, w którym piękno spotyka spokój. Paznokcie, rzęsy, brwi i pielęgnacja twarzy w ciepłej, kameralnej atmosferze.</p>
+      <h1 class="font-display text-5xl leading-tight md:text-7xl">Perfecto Keratin</h1>
+      <p class="mt-5 text-lg text-muted-foreground">Oferujemy kompleksowe szkolenia z zakresu nowoczesnych metod pielęgnacji i regeneracji włosów. Nasze kursy łączą solidną wiedzę teoretyczną z intensywnymi zajęciami praktycznymi, umożliwiając uczestnikom zdobycie umiejętności niezbędnych do samodzielnego wykonywania zabiegów.</p>
       <div class="mt-8 flex flex-wrap items-center gap-4">
         <a href="#kontakt" class="rounded-full bg-primary px-7 py-3 text-primary-foreground shadow-soft">Zarezerwuj na Booksy</a>
         <div class="flex gap-3" id="socials-hero"></div>
@@ -96,8 +96,8 @@ body { font-family: var(--font-sans); background-color: var(--background); color
     <div>
       <p class="text-sm uppercase tracking-[0.3em] text-primary">O nas</p>
       <h2 class="mt-3 font-display text-4xl md:text-5xl">Pasja do piękna od ponad 10 lat</h2>
-      <p class="mt-6 text-muted-foreground">Tworzymy miejsce, w którym każda wizyta to chwila wytchnienia. Nasz zespół to doświadczone stylistki i kosmetolożki, które z uwagą słuchają Twoich potrzeb.</p>
-      <p class="mt-4 text-muted-foreground">Stawiamy na naturalny efekt, najwyższą jakość kosmetyków i indywidualne podejście.</p>
+      <p class="mt-6 text-muted-foreground">Oferujemy kompleksowe szkolenia z zakresu nowoczesnych metod pielęgnacji i regeneracji włosów.</p>
+      <p class="mt-4 text-muted-foreground">Nasze kursy łączą solidną wiedzę teoretyczną z intensywnymi zajęciami praktycznymi, umożliwiając uczestnikom zdobycie umiejętności niezbędnych do samodzielnego wykonywania zabiegów.</p>
     </div>
   </div>
 </section>
@@ -211,19 +211,19 @@ $('socials-hero').innerHTML = socials;
 $('socials-contact').innerHTML = socials;
 
 $('offers').innerHTML = [
-  ['Manicure hybrydowy', 'Trwały kolor i perfekcyjny kształt paznokci.', 'od 120 zł'],
-  ['Stylizacja rzęs', 'Przedłużanie i laminacja dla wyrazistego spojrzenia.', 'od 180 zł'],
-  ['Stylizacja brwi', 'Henna, regulacja i laminacja brwi.', 'od 80 zł'],
-  ['Zabiegi na twarz', 'Oczyszczanie, nawilżanie i odmładzanie skóry.', 'od 220 zł'],
-  ['Pedicure', 'Pielęgnacja stóp z relaksującym masażem.', 'od 140 zł'],
-  ['Makijaż okazjonalny', 'Na wesele, sesję zdjęciową lub wieczór.', 'od 200 zł']
-].map(([t, d, p]) => `<div class="rounded-2xl bg-card p-7 transition hover:-translate-y-1 hover:shadow-soft"><h3 class="font-display text-2xl">${t}</h3><p class="mt-2 text-sm text-muted-foreground">${d}</p><p class="mt-5 font-medium text-primary">${p}</p></div>`).join('');
+['Nanoplastia', 'Innowacyjny zabieg trwałego prostowania włosów, zapewniający efekt utrzymujący się nawet do 12 miesięcy. Szkolenie obejmuje naukę aplikacji oraz dobór odpowiednich produktów.'],
+  ['Nanobotoks', 'Zabieg wygładzający i nawilżający włosy, przeciwdziałający puszeniu i ułatwiający codzienną stylizację. Efekty utrzymują się do 3 miesięcy.'],
+  ['Krioterapia włosów', 'Zaawansowana metoda regeneracji zniszczonych włosów przy użyciu ujemnych temperatur i specjalistycznych kosmetyków.'],
+  ['Zabiegi kolagenowe', 'Szkolenie z zastosowania tropokolagenu w zabiegach estetycznych, skupiające się na właściwościach regeneracyjnych, technikach aplikacji oraz protokołach postępowania przed i po zabiegu.'],
+  ['Keratynowe prostowanie włosów', 'Szkolenie z metody keratynowej podzielone jest na część teoretyczną i praktyczną. Czas szkolenia dopasowany jest do potrzeb kursanta.'],
+  ['Chemia kosmetyczna', 'Szkolenie z zakresu budowy kosmetyku, składników aktywnych, konserwantów, emulgatorów oraz metod zwiększania przenikania substancji aktywnych przez naskórek.']
+].map(([t, d, p]) => `<div class="rounded-2xl bg-card p-7 transition hover:-translate-y-1 hover:shadow-soft"><h3 class="font-display text-2xl">${t}</h3><p class="mt-2 text-sm text-muted-foreground">${d}</p></div>`).join('');
 
 $('why').innerHTML = [
-  ['✦', 'Doświadczenie', 'Ponad 10 lat pracy i stałe szkolenia.'],
-  ['❦', 'Dobre kosmetyki', 'Pracujemy na sprawdzonych, bezpiecznych markach.'],
-  ['✓', 'Higiena', 'Sterylizacja narzędzi po każdej wizycie.'],
-  ['♥', 'Atmosfera', 'Spokojne wnętrze, kawa i chwila tylko dla Ciebie.']
+  ['✦', 'Doświadczenie i profesjonalizm', 'Szkolenia prowadzone przez wykwalifikowaną kadrę z wieloletnim doświadczeniem w branży fryzjerskiej.'],
+  ['❦', 'Indywidualne podejście', 'Zajęcia dostosowane do poziomu zaawansowania uczestników, zarówno dla początkujących, jak i zaawansowanych​.'],
+  ['✓', 'Certyfikaty ukończenia', 'Po zakończeniu szkolenia uczestnicy otrzymują certyfikat potwierdzający zdobyte umiejętności.​'],
+  ['♥', 'Wsparcie po szkoleniu', 'Oferujemy konsultacje i pomoc w wdrażaniu zdobytej wiedzy w praktyce salonowej.']
 ].map(([i, t, d]) => `<div class="text-center"><div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-accent text-2xl text-accent-foreground">${i}</div><h3 class="mt-5 font-display text-2xl">${t}</h3><p class="mt-2 text-sm text-muted-foreground">${d}</p></div>`).join('');
 
 $('gallery').innerHTML = [
@@ -232,9 +232,9 @@ $('gallery').innerHTML = [
 ].map(([a, b]) => `<div class="aspect-square w-full rounded-2xl transition hover:scale-[1.02]" style="background:linear-gradient(135deg,${a},${b})"></div>`).join('');
 
 $('reviews').innerHTML = [
-  ['Najlepszy manicure w mieście! Trzyma się ponad 3 tygodnie.', 'Anna K.'],
-  ['Cudowna atmosfera i profesjonalna obsługa. Rzęsy wyglądają naturalnie.', 'Marta W.'],
-  ['Zabieg na twarz to czysty relaks. Skóra promienieje. Polecam!', 'Kasia P.']
+  ['Rewelacyjny zabieg i profesjonalne wykonanie. Włosy są gładkie, ale nie przyklapnięte. Efekt utrzymuje się długo dzięki poleconym produktom. Dziękuję i polecam.', 'Margo'],
+  ['Bardzo miła wizyta, pani Beata potrafi super doradzić i wykonać piękne strzyżenie. Polecam!', 'Aleksandra'],
+  ['Serdecznie polecam zabieg kolagenowy na włosy. Moje włosy były puszące się i suche a po wizycie są niesamowicie gładkie.', 'Natalia.']
 ].map(([q, a]) => `<figure class="rounded-2xl border border-border bg-card p-7"><div class="flex gap-1 text-primary">★★★★★</div><blockquote class="mt-4 font-display text-xl italic">„${q}”</blockquote><figcaption class="mt-4 text-sm text-muted-foreground">— ${a}</figcaption></figure>`).join('');
 </script>
 </body>

@@ -3,7 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Perfecto Keratin – makieta (szampan i espresso)</title>
+<title>Perfecto Keratin</title>
+<meta name="description" content="Perfecto Keratin – salon urody. Umów wizytę online.">
+<meta name="theme-color" content="#f6f1e6">
+<meta property="og:title" content="Perfecto Keratin">
+<meta property="og:type" content="website">
+<!-- og:image needs an absolute URL, e.g. https://USER.github.io/REPO/assets/og-image.jpg -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23201812'/%3E%3Ctext x='50' y='66' font-size='45' text-anchor='middle' fill='%23c9a26b' font-family='serif'%3EPK%3C/text%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4.1.11"></script>
 <style type="text/tailwindcss">
@@ -44,6 +50,15 @@
   --ring: oklch(0.54 0.085 70);
   color-scheme: light;
 }
+.flip { perspective: 1000px; }
+.flip:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; border-radius: 1.5rem; }
+.flip-in { position: relative; height: 100%; transition: transform .7s cubic-bezier(.4,.2,.2,1); transform-style: preserve-3d; }
+.flip.on .flip-in { transform: rotateY(180deg); }
+@media (hover: hover) { .flip:hover .flip-in { transform: rotateY(180deg); } }
+.face { position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.back { transform: rotateY(180deg); }
+.fade { transition: opacity 1.2s ease; }
+@media (prefers-reduced-motion: reduce) { .flip-in, .fade { transition: none; } html { scroll-behavior: auto; } }
 html { scroll-behavior: smooth; }
 body { font-family: var(--font-sans); background: var(--background); color: var(--foreground); }
 @layer base { * { border-color: var(--border); } }
@@ -73,9 +88,9 @@ body { font-family: var(--font-sans); background: var(--background); color: var(
 <section id="start" class="mx-auto grid min-h-[85svh] max-w-6xl items-center gap-10 px-5 pb-12 pt-28 md:grid-cols-2">
   <div>
     <div class="mb-6 flex h-24 w-24 items-center justify-center rounded-full border-2 border-primary bg-espresso font-display text-3xl text-primary" title="Tu pojawi się logo">PK</div>
-    <h1 class="font-display text-5xl leading-tight md:text-7xl">Atelier Lumière</h1>
-    <p class="mt-5 max-w-md text-lg text-muted-foreground">Salon urody, w którym piękno spotyka spokój. Paznokcie, rzęsy, brwi i pielęgnacja twarzy w ciepłej, kameralnej atmosferze.</p>
-    <div class="mt-8 flex flex-wrap items-center gap-4"><a href="#kontakt" class="btn">Zarezerwuj na Booksy</a><div class="flex gap-3 soc"></div></div>
+    <h1 class="font-display text-5xl leading-tight md:text-7xl">Perfect Keratin</h1>
+    <p class="mt-5 max-w-md text-lg text-muted-foreground">Oferujemy kompleksowe szkolenia z zakresu nowoczesnych metod pielęgnacji i regeneracji włosów. Nasze kursy łączą solidną wiedzę teoretyczną z intensywnymi zajęciami praktycznymi, umożliwiając uczestnikom zdobycie umiejętności niezbędnych do samodzielnego wykonywania zabiegów.</p>
+    <div class="mt-8 flex flex-wrap items-center gap-4"><a href="https://booksy.com/" target="_blank" rel="noreferrer" class="btn">Zarezerwuj na Booksy</a><div class="flex gap-3 soc"></div></div>
   </div>
   <div class="mx-auto aspect-[4/5] w-full max-w-md shadow-soft" style="border-radius:999px 999px 1.5rem 1.5rem;background:linear-gradient(165deg,#ead3ad,#b88f5e 60%,#5a4130)"></div>
 </section>
@@ -90,9 +105,9 @@ body { font-family: var(--font-sans); background: var(--background); color: var(
 
 <!-- OFFER (menu list) -->
 <section id="oferta" class="sec">
-  <div class="mx-auto max-w-3xl">
+  <div class="mx-auto max-w-6xl">
     <div class="mb-10 text-center"><p class="eyebrow">Oferta</p><h2 class="mt-3 font-display text-4xl md:text-5xl">Nasze usługi</h2></div>
-    <div id="offers"></div>
+    <div id="offers" class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3"></div>
   </div>
 </section>
 
@@ -122,8 +137,8 @@ body { font-family: var(--font-sans); background: var(--background); color: var(
     <div>
       <p class="eyebrow">O nas</p>
       <h2 class="mt-3 font-display text-4xl md:text-5xl">Pasja do piękna od ponad 10 lat</h2>
-      <p class="mt-6 text-muted-foreground">Tworzymy miejsce, w którym każda wizyta to chwila wytchnienia. Nasz zespół to doświadczone stylistki i kosmetolożki, które z uwagą słuchają Twoich potrzeb.</p>
-      <p class="mt-4 text-muted-foreground">Stawiamy na naturalny efekt, najwyższą jakość kosmetyków i indywidualne podejście.</p>
+      <p class="mt-6 text-muted-foreground">Oferujemy kompleksowe szkolenia z zakresu nowoczesnych metod pielęgnacji i regeneracji włosów.</p>
+      <p class="mt-4 text-muted-foreground">Nasze kursy łączą solidną wiedzę teoretyczną z intensywnymi zajęciami praktycznymi, umożliwiając uczestnikom zdobycie umiejętności niezbędnych do samodzielnego wykonywania zabiegów.</p>
     </div>
   </div>
 </section>
@@ -154,7 +169,7 @@ body { font-family: var(--font-sans); background: var(--background); color: var(
       <div class="mt-8 flex flex-col gap-5 rounded-3xl bg-espresso p-8 text-espresso-foreground shadow-soft">
         <h3 class="font-display text-3xl">Umów się online</h3>
         <p class="text-espresso-foreground/70">Wybierz termin w Booksy lub napisz do nas na Facebooku i Instagramie.</p>
-        <a href="#" class="btn">Rezerwuj na Booksy</a>
+        <a href="https://booksy.com/" target="_blank" rel="noreferrer" class="btn">Rezerwuj na Booksy</a>
         <div class="flex gap-3 soc"></div>
       </div>
       <ul class="mt-8 space-y-4">
@@ -165,13 +180,14 @@ body { font-family: var(--font-sans); background: var(--background); color: var(
     <div class="rounded-3xl border border-border bg-card p-8">
       <h3 class="font-display text-3xl">Napisz do nas</h3>
       <p class="mt-2 text-muted-foreground">Wypełnij formularz, a odpowiemy najszybciej, jak to możliwe.</p>
-      <form class="mt-6 grid gap-5 sm:grid-cols-2" onsubmit="event.preventDefault();this.querySelector('button').textContent='To tylko makieta ✓'">
-        <div><label class="mb-2 block text-sm font-medium">Imię <span class="text-primary">*</span></label><input required class="in"></div>
-        <div><label class="mb-2 block text-sm font-medium">Nazwisko <span class="text-primary">*</span></label><input required class="in"></div>
-        <div><label class="mb-2 block text-sm font-medium">E-mail <span class="text-primary">*</span></label><input type="email" required class="in"></div>
-        <div><label class="mb-2 block text-sm font-medium">Telefon</label><input type="tel" class="in"></div>
-        <div class="sm:col-span-2"><label class="mb-2 block text-sm font-medium">Treść wiadomości <span class="text-primary">*</span></label><textarea rows="4" required class="in"></textarea></div>
-        <label class="flex items-start gap-3 text-sm text-muted-foreground sm:col-span-2"><input type="checkbox" required class="mt-1 h-4 w-4 shrink-0 accent-primary"><span>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na moją wiadomość. <a href="#" class="text-primary underline">Polityka prywatności</a> <span class="text-primary">*</span></span></label>
+      <form class="mt-6 grid gap-5 sm:grid-cols-2" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="hidden">
+        <div><label class="mb-2 block text-sm font-medium">Imię <span class="text-primary">*</span></label><input name="first_name" autocomplete="given-name" required class="in"></div>
+        <div><label class="mb-2 block text-sm font-medium">Nazwisko <span class="text-primary">*</span></label><input name="last_name" autocomplete="family-name" required class="in"></div>
+        <div><label class="mb-2 block text-sm font-medium">E-mail <span class="text-primary">*</span></label><input type="email" name="email" autocomplete="email" required class="in"></div>
+        <div><label class="mb-2 block text-sm font-medium">Telefon</label><input type="tel" name="phone" autocomplete="tel" class="in"></div>
+        <div class="sm:col-span-2"><label class="mb-2 block text-sm font-medium">Treść wiadomości <span class="text-primary">*</span></label><textarea name="message" rows="4" required class="in"></textarea></div>
+        <label class="flex items-start gap-3 text-sm text-muted-foreground sm:col-span-2"><input type="checkbox" name="consent" value="tak" required class="mt-1 h-4 w-4 shrink-0 accent-primary"><span>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na moją wiadomość. <a href="polityka-prywatnosci.html" class="text-primary underline">Polityka prywatności</a> <span class="text-primary">*</span></span></label>
         <div class="sm:col-span-2"><button class="btn">Wyślij wiadomość</button></div>
       </form>
     </div>
@@ -199,26 +215,57 @@ const $ = id => document.getElementById(id);
 const links = [['O nas','#o-nas'],['Oferta','#oferta'],['Galeria','#galeria'],['Opinie','#opinie'],['Kontakt','#kontakt']];
 $('menu').innerHTML = links.map(([t,h]) => `<li><a href="${h}" class="transition hover:text-primary">${t}</a></li>`).join('');
 $('mmenu').innerHTML = links.map(([t,h]) => `<li><a href="${h}" class="block border-b border-border py-3">${t}</a></li>`).join('');
-$('fmenu').innerHTML = [['O nas','#o-nas'],['Kontakt','#kontakt'],['Polityka prywatności','#']].map(([t,h]) => `<li><a href="${h}" class="hover:text-primary">${t}</a></li>`).join('');
+$('fmenu').innerHTML = [['O nas','#o-nas'],['Kontakt','#kontakt'],['Polityka prywatności','polityka-prywatnosci.html']].map(([t,h]) => `<li><a href="${h}" class="hover:text-primary">${t}</a></li>`).join('');
 $('burger').onclick = () => { const o = $('mnav').classList.toggle('hidden'); $('burger').setAttribute('aria-expanded', !o); };
 $('mnav').onclick = () => { $('mnav').classList.add('hidden'); $('burger').setAttribute('aria-expanded', 'false'); };
 
-const soc = ['Fb','Ig','B'].map(t => `<a href="#" aria-label="${t}" class="flex h-11 w-11 items-center justify-center rounded-full border border-primary/50 text-sm text-primary transition hover:bg-primary hover:text-primary-foreground">${t}</a>`).join('');
+const soc = [['Fb','https://facebook.com/'],['Ig','https://instagram.com/'],['B','https://booksy.com/']].map(([t,h]) => `<a href="${h}" target="_blank" rel="noreferrer" aria-label="${t}" class="flex h-11 w-11 items-center justify-center rounded-full border border-primary/50 text-sm text-primary transition hover:bg-primary hover:text-primary-foreground">${t}</a>`).join('');
 document.querySelectorAll('.soc').forEach(e => e.innerHTML = soc);
 
-$('why').innerHTML = [['✦','Doświadczenie','Ponad 10 lat pracy i stałe szkolenia.'],['❦','Dobre kosmetyki','Pracujemy na sprawdzonych, bezpiecznych markach.'],['✓','Higiena','Sterylizacja narzędzi po każdej wizycie.'],['♥','Atmosfera','Spokojne wnętrze, kawa i chwila tylko dla Ciebie.']]
+$('why').innerHTML = [
+['✦','Doświadczenie','Ponad 10 lat pracy i stałe szkolenia.'],
+['❦','Dobre kosmetyki','Pracujemy na sprawdzonych, bezpiecznych markach.'],
+['✓','Higiena','Sterylizacja narzędzi po każdej wizycie.'],
+['♥','Atmosfera','Spokojne wnętrze, kawa i chwila tylko dla Ciebie.']
+]
   .map(([i,t,d]) => `<div class="text-center"><div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-accent text-xl text-accent-foreground">${i}</div><h3 class="mt-4 font-display text-2xl">${t}</h3><p class="mt-1 text-sm text-muted-foreground">${d}</p></div>`).join('');
 
-$('offers').innerHTML = [['Manicure hybrydowy','Trwały kolor i perfekcyjny kształt paznokci.','od 120 zł'],['Stylizacja rzęs','Przedłużanie i laminacja dla wyrazistego spojrzenia.','od 180 zł'],['Stylizacja brwi','Henna, regulacja i laminacja brwi.','od 80 zł'],['Zabiegi na twarz','Oczyszczanie, nawilżanie i odmładzanie skóry.','od 220 zł'],['Pedicure','Pielęgnacja stóp z relaksującym masażem.','od 140 zł'],['Makijaż okazjonalny','Na wesele, sesję zdjęciową lub wieczór.','od 200 zł']]
-  .map(([t,d,p]) => `<div class="flex items-baseline gap-4 border-b border-border py-5"><div class="flex-1"><h3 class="font-display text-2xl">${t}</h3><p class="mt-1 text-sm text-muted-foreground">${d}</p></div><div class="text-right"><p class="font-medium text-primary">${p}</p><a href="#kontakt" class="text-xs text-muted-foreground underline hover:text-primary">Umów</a></div></div>`).join('');
+$('offers').innerHTML = [
+  ['Nanoplastia', 'Innowacyjny zabieg trwałego prostowania włosów, zapewniający efekt utrzymujący się nawet do 12 miesięcy. Szkolenie obejmuje naukę aplikacji oraz dobór odpowiednich produktów.'],
+  ['Nanobotoks', 'Zabieg wygładzający i nawilżający włosy, przeciwdziałający puszeniu i ułatwiający codzienną stylizację. Efekty utrzymują się do 3 miesięcy.'],
+  ['Krioterapia włosów', 'Zaawansowana metoda regeneracji zniszczonych włosów przy użyciu ujemnych temperatur i specjalistycznych kosmetyków.'],
+  ['Zabiegi kolagenowe', 'Szkolenie z zastosowania tropokolagenu w zabiegach estetycznych, skupiające się na właściwościach regeneracyjnych, technikach aplikacji oraz protokołach postępowania przed i po zabiegu.'],
+  ['Keratynowe prostowanie włosów', 'Szkolenie z metody keratynowej podzielone jest na część teoretyczną i praktyczną. Czas szkolenia dopasowany jest do potrzeb kursanta.'],
+  ['Chemia kosmetyczna', 'Szkolenie z zakresu budowy kosmetyku, składników aktywnych, konserwantów, emulgatorów oraz metod zwiększania przenikania substancji aktywnych przez naskórek.']
+].map(([t,d]) => `<div class="flip h-48 cursor-pointer" tabindex="0"><div class="flip-in"><div class="face flex flex-col justify-between rounded-2xl border border-border bg-card p-6 shadow-soft"><h3 class="font-display text-2xl">${t}</h3><div class="flex items-end justify-between"><span class="text-muted-foreground" aria-hidden="true">↻</span></div></div><div class="face back flex flex-col justify-between rounded-2xl bg-espresso p-6 text-espresso-foreground"><p class="text-sm leading-relaxed text-espresso-foreground/85">${d}</p><a href="#kontakt" class="text-sm text-accent underline">Umów wizytę →</a></div></div></div>`).join('');
+document.querySelectorAll('.flip').forEach(c => {
+  c.onclick = e => { if (!e.target.closest('a')) c.classList.toggle('on'); };
+  c.onkeydown = e => { if ((e.key === 'Enter' || e.key === ' ') && e.target === c) { e.preventDefault(); c.classList.toggle('on'); } };
+});
 
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const spans = ['md:col-span-2 md:row-span-2','md:row-span-2','','','md:col-span-2','md:col-span-2'];
+// Placeholders: replace each gradient with <img src="assets/gallery-N-before.webp"> / "-after.webp"
 const gal = [['#ead3ad','#a98156'],['#c9a273','#4a3626'],['#f0dfc2','#c3995f'],['#b88f5e','#5a4130'],['#e3c598','#8a6a43'],['#f3e6cf','#cfa56c']];
-$('gallery').innerHTML = gal.map(([a,b],i) => `<div class="rounded-2xl transition hover:scale-[1.02] ${spans[i]}" style="background:linear-gradient(135deg,${a},${b})"></div>`).join('');
+$('gallery').innerHTML = gal.map(([a,b],i) => `<div class="tile relative cursor-pointer overflow-hidden rounded-2xl ${spans[i]}" style="background:linear-gradient(135deg,${a},${b})"><div class="bef fade absolute inset-0" style="background:linear-gradient(135deg,${a},${b});filter:grayscale(.85) brightness(.8)"></div><span class="bd absolute left-3 top-3 rounded-full bg-espresso/80 px-3 py-1 text-xs text-espresso-foreground">Przed</span></div>`).join('');
+const swap = t => { const o = t.querySelector('.bef'), on = o.style.opacity !== '0'; o.style.opacity = on ? '0' : '1'; t.querySelector('.bd').textContent = on ? 'Po' : 'Przed'; };
+document.querySelectorAll('.tile').forEach((t, i) => {
+  t.onclick = () => swap(t);
+  if (!reduce) setTimeout(() => setInterval(() => { if (!t.matches(':hover')) swap(t); }, 4000), i * 700);
+});
 
-$('range').oninput = e => { const v = e.target.value; $('before').style.clipPath = `inset(0 ${100-v}% 0 0)`; $('bar').style.left = v + '%'; };
+let auto = !reduce, ph = 0;
+const setV = v => { $('range').value = v; $('before').style.clipPath = `inset(0 ${100-v}% 0 0)`; $('bar').style.left = v + '%'; };
+const sweep = () => { if (!auto) return; ph += 0.015; setV(50 + 42 * Math.sin(ph)); requestAnimationFrame(sweep); };
+['pointerdown', 'keydown'].forEach(ev => $('range').addEventListener(ev, () => auto = false));
+$('range').oninput = e => setV(e.target.value);
+sweep();
 
-const qs = [['Najlepszy manicure w mieście! Trzyma się ponad 3 tygodnie.','Anna K.'],['Cudowna atmosfera i profesjonalna obsługa. Rzęsy wyglądają naturalnie.','Marta W.'],['Zabieg na twarz to czysty relaks. Skóra promienieje. Polecam!','Kasia P.']];
+const qs = [
+  ['Rewelacyjny zabieg i profesjonalne wykonanie. Włosy są gładkie, ale nie przyklapnięte. Efekt utrzymuje się długo dzięki poleconym produktom. Dziękuję i polecam.', 'Margo'],
+  ['Bardzo miła wizyta, pani Beata potrafi super doradzić i wykonać piękne strzyżenie. Polecam!', 'Aleksandra'],
+  ['Serdecznie polecam zabieg kolagenowy na włosy. Moje włosy były puszące się i suche a po wizycie są niesamowicie gładkie.', 'Natalia.']
+];
 let n = 0;
 function showQ() {
   $('q').textContent = `„${qs[n][0]}”`; $('qa').textContent = `— ${qs[n][1]}`;
@@ -227,6 +274,18 @@ function showQ() {
 $('prev').onclick = () => { n = (n + qs.length - 1) % qs.length; showQ(); };
 $('next').onclick = () => { n = (n + 1) % qs.length; showQ(); };
 showQ();
+
+const f = document.querySelector('form');
+f.onsubmit = async e => {
+  e.preventDefault();
+  const b = f.querySelector('button'); b.disabled = true;
+  try {
+    const r = await fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } });
+    b.textContent = r.ok ? 'Wysłano ✓ Dziękujemy!' : 'Błąd – spróbuj ponownie';
+    if (r.ok) f.reset();
+  } catch { b.textContent = 'Błąd – spróbuj ponownie'; }
+  b.disabled = false;
+};
 </script>
 </body>
 </html>
